@@ -21,6 +21,7 @@ function selectionSort(arr, compare){
     for(var j = i + 1; j < arr.length; j++){
       // find min
       if(compare(arr[min], arr[j]) > 0){
+        // if positive number, that means arr[min] is greater than arr[j]
         min = j;
       }
     }
