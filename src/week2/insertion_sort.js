@@ -23,7 +23,7 @@ function insertionSort(arr, cb){
     for(var j = i; j > 0; j--){
       var compare = cb(arr[j], arr[j-1]);
       if(compare < 0) swap(arr, j, j-1);
-      if(compare > 0) break;
+      else break;
     }
   }
   return arr;
