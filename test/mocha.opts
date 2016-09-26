@@ -1,2 +1,2 @@
-src/week2/*.spec.js
+src/week3/*.spec.js
 --require=babel-core/register
