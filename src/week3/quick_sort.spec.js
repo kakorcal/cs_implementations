@@ -1,6 +1,7 @@
 const assert = require('assert');
 const quickSort = require('./quick_sort').quickSort;
 const partition = require('./quick_sort').partition;
+const selection = require('./quick_sort').selection;
 
 describe('Quick Sort', ()=>{
   var numArr, letterArr;
@@ -34,6 +35,18 @@ describe('Quick Sort', ()=>{
     it('should sort a number array', ()=>{
       quickSort(numArr, 0, numArr.length - 1, numLess);
       assert.deepEqual(numArr, [2,3,4,5,6,7,8,9,10]);
+    });
+  });
+
+  describe('selection', ()=>{
+    it('should return the kth largest element', ()=>{
+      assert.strictEqual(selection([7, 10, 4, 3, 20, 15], 3, numLess), 10);
+      assert.strictEqual(selection([7, 10, 4, 3, 20, 15], 4, numLess), 15);
+    });
+
+    it('should return null if k is out of bounds', ()=>{
+      assert.strictEqual(selection([7, 10, 4, 3, 20, 15], 10, numLess), null);
+      assert.strictEqual(selection([7, 10, 4, 3, 20, 15], -1, numLess), null);
     });
   });
 });

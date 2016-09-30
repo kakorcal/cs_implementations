@@ -20,8 +20,7 @@
   Not Stable - doesn't persist the sorting
   Best Case: Nlog(N)
   Worst Case: N^2 (when array is already ordered)
-  Average Case: 1.39log(N) (still faster than merge sort b/c it doesn't require extra memory
-  )
+  Average Case: 1.39log(N) (still faster than merge sort b/c it doesn't require extra memory)
 */
 
 function quickSort(arr, lo, hi, cb){
@@ -50,4 +49,34 @@ function swap(arr, i1, i2){
   [arr[i1], arr[i2]] = [arr[i2], arr[i1]];
 }
 
-module.exports = {quickSort, partition};
+/*
+  Selection:
+  Given an array of N items, find the kth largest.
+  Ex. Min (k = 0), Max (k = N-1), Median (k = N/2)
+
+  • Entry a[j] is in place
+  • No larger entry to the left of j
+  • No smaller entry to the right of j
+
+  Repeat in one subarray, depending on j. finished when j equals k
+*/
+
+function selection(arr, k, cb){
+  if(k < 0 || k >= arr.length) return null;
+  var lo = 0; 
+  var hi = arr.length - 1;
+
+  while(hi > lo){
+    var j = partition(arr, lo, hi, cb);
+    if(j < k) {
+      lo = j + 1; 
+    }else if(j > k) {
+      hi = j - 1; 
+    }else {
+      return arr[k]; 
+    }
+  }
+  return arr[k];
+}
+
+module.exports = {quickSort, partition, selection};
