@@ -79,4 +79,42 @@ function selection(arr, k, cb){
   return arr[k];
 }
 
+/*
+  Duplicate Keys
+  Mistake - Put all items equal to the partitioning item on one side O(N^2)
+  Recommended - Stop scans on items equal to the partitioning item O(NlogN)
+  Desired - Put all items equal to the partitioning item in place
+
+  Dijkstra 3-way partitioning 
+  • Let v be partitioning item a[lo]
+  • Scan i from left to right
+    - (a[i] < v): exchange a[lt] with a[i]. increment both lt and i
+    - (a[i] > v): exchange a[gt] with a[i]. decrement gt
+    - (a[i] == v): increment i 
+
+  Invariant
+  a[lt] to a[i], where a[i] not included, is equal to v
+  left of a[lt] is less than v
+  right of a[gt], where a[gt] not included, is greater than v
+*/
+
+function threeWayQSort(arr, lo, hi){
+  if(hi <= lo) return;
+  var lt = lo;
+  var gt = hi;
+  var v = arr[lo];
+  var i = lo;
+  while(i <= gt){
+    if(arr[i] < v) {
+      swap(arr, lt++, i++);
+    }else if(arr[i] > v) {
+      swap(arr, i, gt--); 
+    }else{
+      i++;
+    } 
+  }
+  threeWayQSort(arr, lo, lt-1);
+  threeWayQSort(arr, gt+1, hi);
+}
+
 module.exports = {quickSort, partition, selection};
