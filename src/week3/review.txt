@@ -1,0 +1,8 @@
+Algorithm | Inplace | Stable |  Worst  |  Average  |   Best   |  Description
+
+Selection |   Yes   |   No   |  N^2/2  |   N^2/2   |   N^2/2  |  N exchanges
+Insertion |   Yes   |   Yes  |  N^2/2  |   N^2/4   |     N    |  use for small N or partially ordered
+Shell     |   Yes   |   No   |  ?      |   ?       |   N      |  subquadratic
+Merge     |   No    |   Yes  |  NlogN  |   NlogN   |   NlogN  |  NlogN guarantee, stable
+Quick     |   Yes   |   No   |  N^2/2  |   2NlogN  |   NlogN  |  NlogN partial guarantee, fastest in practice
+3WayQuick |   Yes   |   No   |  N^2/2  |   2NlogN  |   N      |  improves quicksort if duplicate keys exist
